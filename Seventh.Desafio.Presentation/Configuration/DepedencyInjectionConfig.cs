@@ -1,5 +1,9 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Seventh.Desafio.Business.Interfaces.Repository;
+using Seventh.Desafio.Business.Interfaces.Services;
+using Seventh.Desafio.Business.Services;
 using Seventh.Desafio.Data.Context;
+using Seventh.Desafio.Data.Repository;
 
 namespace Seventh.Desafio.Presentation.Configuration
 {
@@ -8,6 +12,10 @@ namespace Seventh.Desafio.Presentation.Configuration
         public static IServiceCollection ResolveDependencies(this IServiceCollection services)
         {
             services.AddScoped<ApplicationDbContext>();
+
+            services.AddScoped<IServidorRepository, ServidorRepository>();
+
+            services.AddScoped<IServidorService, ServidorService>();
 
             return services;
         }

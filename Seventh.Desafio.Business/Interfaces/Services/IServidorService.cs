@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 
 namespace Seventh.Desafio.Business.Interfaces.Services
 {
-    public interface IServidorService : IDisposable
+    public interface IServidorService
     {
         HttpResponseBase AddServidor(Servidor servidor);
+        HttpResponseBase UpdateServidor(Servidor servidor);
     }
 }

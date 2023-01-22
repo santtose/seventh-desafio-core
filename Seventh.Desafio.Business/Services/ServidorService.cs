@@ -8,18 +8,19 @@ namespace Seventh.Desafio.Business.Services
 {
     public class ServidorService : IServidorService
     {
-        private readonly IServidorRepository _fornecedorRepository;
+        private readonly IServidorRepository _servidorRepository;
 
-        public ServidorService(IServidorRepository fornecedorRepository)
+        public ServidorService(IServidorRepository servidorRepository)
         {
-            _fornecedorRepository = fornecedorRepository;
+            _servidorRepository = servidorRepository;
         }
 
         public HttpResponseBase AddServidor(Servidor servidor)
         {
             try
             {
-                _fornecedorRepository.Add(servidor);
+                var teste = _servidorRepository.Get(x => x.Id == servidor.Id);
+                _servidorRepository.Add(servidor);
 
                 return new HttpResponseBase { mensagem = "Servidor criado com sucesso", sucesso = true, tpMensagem = HttpResponseBase.TipoMensagem.Sucesso };
             }
@@ -29,9 +30,18 @@ namespace Seventh.Desafio.Business.Services
             }
         }
 
-        public void Dispose()
+        public HttpResponseBase UpdateServidor(Servidor servidor)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _servidorRepository.Update(servidor);
+
+                return new HttpResponseBase { mensagem = "Servidor atualizado com sucesso", sucesso = true, tpMensagem = HttpResponseBase.TipoMensagem.Sucesso };
+            }
+            catch (Exception ex)
+            {
+                return new HttpResponseBase { mensagem = "Erro ao atualizar servidor", msgException = ex.Message, sucesso = false, tpMensagem = HttpResponseBase.TipoMensagem.Erro };
+            }
         }
     }
 }

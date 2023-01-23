@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 
 namespace Seventh.Desafio.Business.DTO
 {
@@ -7,6 +8,7 @@ namespace Seventh.Desafio.Business.DTO
         public Guid Id { get; set; }
         public Guid ServidorId { get; set; }
         public string Descricao { get; set; }
+        public IFormFile FileUpload { get; set; }
         public string VideoUpload { get; set; }
         public bool IsRunning { get; set; }
 

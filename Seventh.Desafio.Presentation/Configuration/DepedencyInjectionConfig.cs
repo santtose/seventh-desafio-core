@@ -14,8 +14,10 @@ namespace Seventh.Desafio.Presentation.Configuration
             services.AddScoped<ApplicationDbContext>();
 
             services.AddScoped<IServidorRepository, ServidorRepository>();
+            services.AddScoped<IVideoRepository, VideoRepository>();
 
             services.AddScoped<IServidorService, ServidorService>();
+            services.AddScoped<IVideoService, VideoService>();
 
             return services;
         }

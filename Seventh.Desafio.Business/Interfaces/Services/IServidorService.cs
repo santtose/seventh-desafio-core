@@ -12,5 +12,6 @@ namespace Seventh.Desafio.Business.Interfaces.Services
         HttpResponseBase UpdateServidor(Servidor servidor);
         IEnumerable<Servidor> GetServidores();
         HttpResponseBase InativarServidor(Guid id);
+        HttpResponseBase VerificarDisponibilidade(Guid id);
     }
 }

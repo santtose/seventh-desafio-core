@@ -76,5 +76,23 @@ namespace Seventh.Desafio.Business.Services
                 return new HttpResponseBase { mensagem = "Erro ao remover servidor", msgException = ex.Message, sucesso = false, tpMensagem = HttpResponseBase.TipoMensagem.Erro };
             }
         }
+
+        public HttpResponseBase VerificarDisponibilidade(Guid id)
+        {
+            try
+            {
+                var servidor = _servidorRepository.GetAsNoTracking(x => x.Id == id).FirstOrDefault();
+                var mensagemRetorno = string.Empty;
+
+                if (servidor != null)
+                    mensagemRetorno = servidor.IsDisponivel ? "Disponível" : "Indisponível";
+
+                return new HttpResponseBase { mensagem = mensagemRetorno, sucesso = true, tpMensagem = HttpResponseBase.TipoMensagem.Sucesso };
+            }
+            catch (Exception ex)
+            {
+                return new HttpResponseBase { mensagem = "Erro ao verificar servidor", msgException = ex.Message, sucesso = false, tpMensagem = HttpResponseBase.TipoMensagem.Erro };
+            }
+        }
     }
 }

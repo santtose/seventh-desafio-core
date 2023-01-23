@@ -47,6 +47,12 @@ namespace Seventh.Desafio.Presentation.Controllers
             return Ok(_servidorService.InativarServidor(id));
         }
 
+        [HttpGet("servers/available/{id:guid}")]
+        public IActionResult DisponibilidadeServidor(Guid id)
+        {
+            return Ok(_servidorService.VerificarDisponibilidade(id));
+        }
+
         [HttpGet("servers")]
         public IActionResult GetAll()
         {

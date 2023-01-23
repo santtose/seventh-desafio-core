@@ -3,6 +3,8 @@ using Seventh.Desafio.Business.Entidades;
 using Seventh.Desafio.Business.Interfaces.Repository;
 using Seventh.Desafio.Business.Interfaces.Services;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Seventh.Desafio.Business.Services
 {
@@ -19,7 +21,7 @@ namespace Seventh.Desafio.Business.Services
         {
             try
             {
-                var teste = _servidorRepository.Get(x => x.Id == servidor.Id);
+                servidor.DataCriacao = DateTime.Now;
                 _servidorRepository.Add(servidor);
 
                 return new HttpResponseBase { mensagem = "Servidor criado com sucesso", sucesso = true, tpMensagem = HttpResponseBase.TipoMensagem.Sucesso };
@@ -28,7 +30,7 @@ namespace Seventh.Desafio.Business.Services
             {
                 return new HttpResponseBase { mensagem = "Erro ao criar servidor", msgException = ex.Message, sucesso = false, tpMensagem = HttpResponseBase.TipoMensagem.Erro };
             }
-        }
+        }        
 
         public HttpResponseBase UpdateServidor(Servidor servidor)
         {
@@ -41,6 +43,37 @@ namespace Seventh.Desafio.Business.Services
             catch (Exception ex)
             {
                 return new HttpResponseBase { mensagem = "Erro ao atualizar servidor", msgException = ex.Message, sucesso = false, tpMensagem = HttpResponseBase.TipoMensagem.Erro };
+            }
+        }
+
+        public IEnumerable<Servidor> GetServidores()
+        {
+            var retorno = _servidorRepository.GetAsNoTracking(x => x.IsAtivo).OrderByDescending(x => x.DataCriacao);
+
+            return retorno;
+        }
+
+        public HttpResponseBase InativarServidor(Guid id)
+        {
+            try
+            {
+                var servidor = _servidorRepository.Get(x => x.Id == id).FirstOrDefault();
+                var mensagemRetorno = string.Empty;
+
+                if (servidor != null)
+                {
+                    servidor.IsAtivo = !servidor.IsAtivo;
+
+                    mensagemRetorno = servidor.IsAtivo ? "Servidor recuperado com sucesso" : "Servidor removido com sucesso";
+
+                    _servidorRepository.Update(servidor);
+                }
+
+                return new HttpResponseBase { mensagem = mensagemRetorno, sucesso = true, tpMensagem = HttpResponseBase.TipoMensagem.Sucesso };
+            }
+            catch (Exception ex)
+            {
+                return new HttpResponseBase { mensagem = "Erro ao remover servidor", msgException = ex.Message, sucesso = false, tpMensagem = HttpResponseBase.TipoMensagem.Erro };
             }
         }
     }

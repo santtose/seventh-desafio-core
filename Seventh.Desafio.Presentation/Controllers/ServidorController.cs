@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Seventh.Desafio.Business.DTO;
 using Seventh.Desafio.Business.Entidades;
 using Seventh.Desafio.Business.Interfaces.Services;
@@ -32,6 +33,24 @@ namespace Seventh.Desafio.Presentation.Controllers
         {
             var servidor = _mapper.Map<Servidor>(servidorDTO);
             return Ok(_servidorService.UpdateServidor(servidor));
+        }
+
+        /// <summary>
+        /// Inativa o servidor, tirando das buscas. O mesmo metodo o ativa novamente. Saída simples para remoção e recuperação do
+        /// servidor sem precisar criar novas tabelas de reciclagem.
+        /// </summary>
+        /// param name="IsAtivo" se for false, inativa o servidor
+        /// <returns></returns>
+        [HttpPost("servers/{id:guid}")]
+        public IActionResult InativarServidor(Guid id)
+        {
+            return Ok(_servidorService.InativarServidor(id));
+        }
+
+        [HttpGet("servers")]
+        public IActionResult GetAll()
+        {
+            return Ok(_servidorService.GetServidores());
         }
     }
 }

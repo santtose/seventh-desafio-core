@@ -10,6 +10,7 @@ namespace Seventh.Desafio.Business.DTO
         public string IpEndereco { get; set; }
         public int IpPorta { get; set; }
         public bool IsAtivo { get; set; }
+        public bool IsDisponivel { get; set; }
         public DateTime DataCriacao { get; set; }
         public IEnumerable<VideoDTO> Videos { get; set; }
     }

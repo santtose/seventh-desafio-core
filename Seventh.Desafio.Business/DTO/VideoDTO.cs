@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System;
+using System.Text.Json.Serialization;
 
 namespace Seventh.Desafio.Business.DTO
 {
@@ -12,6 +13,7 @@ namespace Seventh.Desafio.Business.DTO
         public string VideoUpload { get; set; }
         public bool IsRunning { get; set; }
 
+        [JsonIgnore]
         public ServidorDTO Servidor { get; set; }
     }
 }

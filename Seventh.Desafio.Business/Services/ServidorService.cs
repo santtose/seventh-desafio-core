@@ -49,9 +49,7 @@ namespace Seventh.Desafio.Business.Services
 
         public IEnumerable<Servidor> GetServidores()
         {
-            var retorno = _servidorRepository.GetAsNoTracking(x => x.IsAtivo).OrderByDescending(x => x.DataCriacao);
-
-            return retorno;
+            return _servidorRepository.ObterVideosServidor();
         }
 
         public HttpResponseBase InativarServidor(Guid id)

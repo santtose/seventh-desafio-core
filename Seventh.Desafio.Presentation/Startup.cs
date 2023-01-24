@@ -26,7 +26,9 @@ namespace Seventh.Desafio.Presentation
 
             services.AddAutoMapper(typeof(Startup));
 
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
             services.AddSwaggerConfiguration();
             services.ResolveDependencies();
         }

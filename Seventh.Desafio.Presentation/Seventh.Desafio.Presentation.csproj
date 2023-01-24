@@ -22,4 +22,8 @@
     <ProjectReference Include="..\Seventh.Desafio.Data\Seventh.Desafio.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="UploadedFile\" />
+  </ItemGroup>
+
 </Project>

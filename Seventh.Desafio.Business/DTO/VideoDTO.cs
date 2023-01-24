@@ -7,7 +7,7 @@ namespace Seventh.Desafio.Business.DTO
     public class VideoDTO
     {
         public Guid Id { get; set; }
-        public Guid ServidorId { get; set; }
+        //public Guid ServidorId { get; set; }
         public string Descricao { get; set; }
         public IFormFile FileUpload { get; set; }
         public string VideoUpload { get; set; }

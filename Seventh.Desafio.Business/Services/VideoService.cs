@@ -45,17 +45,15 @@ namespace Seventh.Desafio.Business.Services
         {
             var videoPrefixo = Guid.NewGuid() + "_";
             video.VideoUpload = String.Concat(videoPrefixo, file.FileName);
-            var path = Path.Combine(Directory.GetCurrentDirectory(), "UploadedFile", videoPrefixo + file.FileName);            
+            var path = Path.Combine(Directory.GetCurrentDirectory(), "UploadedFile", videoPrefixo + file.FileName);
 
-            //if (System.IO.File.Exists(path))
+            //using (var stream = new FileStream(path, FileMode.Create))
             //{
-
+            //    file.CopyToAsync(stream);
             //}
 
-            using (var stream = new FileStream(path, FileMode.Create))
-            {
-                file.CopyToAsync(stream);
-            }
+            using var stream = new FileStream(path, FileMode.Create);
+            file.CopyToAsync(stream);
         }
     }
 }

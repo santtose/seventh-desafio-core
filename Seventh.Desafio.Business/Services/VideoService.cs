@@ -4,6 +4,7 @@ using Seventh.Desafio.Business.Entidades;
 using Seventh.Desafio.Business.Interfaces.Repository;
 using Seventh.Desafio.Business.Interfaces.Services;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using static Seventh.Desafio.Business.DTO.HttpResponseBase;
 
@@ -35,9 +36,9 @@ namespace Seventh.Desafio.Business.Services
             }
         }
 
-        public HttpResponseBase UpdateVideo(Video video)
+        public IEnumerable<Video> GetVideos(Guid serverId)
         {
-            throw new NotImplementedException();
+            return _videoRepository.GetAsNoTracking(x => x.ServidorId == serverId);
         }
 
         private void UploadVideo(Video video, IFormFile file)

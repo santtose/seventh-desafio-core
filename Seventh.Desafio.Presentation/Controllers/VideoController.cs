@@ -22,10 +22,16 @@ namespace Seventh.Desafio.Presentation.Controllers
             _mapper = mapper;
         }
 
-        [HttpPost("server/{serverId:guid}/videos")]
+        [HttpPost("servers/{serverId:guid}/videos")]
         public IActionResult AddVideo([FromForm] VideoDTO videoDTO, Guid serverId)
         {
             return Ok(_videoService.AddVideo(_mapper.Map<Video>(videoDTO), videoDTO.FileUpload, serverId));
+        }
+
+        [HttpGet("servers/{serverId:guid}/videos")]
+        public IActionResult GetAll(Guid serverId)
+        {
+            return Ok(_videoService.GetVideos(serverId));
         }
     }
 }

@@ -5,6 +5,7 @@ using Seventh.Desafio.Business.Interfaces.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using static Seventh.Desafio.Business.DTO.HttpResponseBase;
 
 namespace Seventh.Desafio.Business.Services
 {
@@ -24,11 +25,11 @@ namespace Seventh.Desafio.Business.Services
                 servidor.DataCriacao = DateTime.Now;
                 _servidorRepository.Add(servidor);
 
-                return new HttpResponseBase { mensagem = "Servidor criado com sucesso", sucesso = true, tpMensagem = HttpResponseBase.TipoMensagem.Sucesso };
+                return new HttpResponseBase { mensagem = "Servidor criado com sucesso", sucesso = true, tpMensagem = TipoMensagem.Sucesso };
             }
             catch (Exception ex)
             {
-                return new HttpResponseBase { mensagem = "Erro ao criar servidor", msgException = ex.Message, sucesso = false, tpMensagem = HttpResponseBase.TipoMensagem.Erro };
+                return new HttpResponseBase { mensagem = "Erro ao criar servidor", msgException = ex.Message, sucesso = false, tpMensagem = TipoMensagem.Erro };
             }
         }        
 
@@ -38,11 +39,11 @@ namespace Seventh.Desafio.Business.Services
             {
                 _servidorRepository.Update(servidor);
 
-                return new HttpResponseBase { mensagem = "Servidor atualizado com sucesso", sucesso = true, tpMensagem = HttpResponseBase.TipoMensagem.Sucesso };
+                return new HttpResponseBase { mensagem = "Servidor atualizado com sucesso", sucesso = true, tpMensagem = TipoMensagem.Sucesso };
             }
             catch (Exception ex)
             {
-                return new HttpResponseBase { mensagem = "Erro ao atualizar servidor", msgException = ex.Message, sucesso = false, tpMensagem = HttpResponseBase.TipoMensagem.Erro };
+                return new HttpResponseBase { mensagem = "Erro ao atualizar servidor", msgException = ex.Message, sucesso = false, tpMensagem = TipoMensagem.Erro };
             }
         }
 
@@ -69,11 +70,11 @@ namespace Seventh.Desafio.Business.Services
                     _servidorRepository.Update(servidor);
                 }
 
-                return new HttpResponseBase { mensagem = mensagemRetorno, sucesso = true, tpMensagem = HttpResponseBase.TipoMensagem.Sucesso };
+                return new HttpResponseBase { mensagem = mensagemRetorno, sucesso = true, tpMensagem = TipoMensagem.Sucesso };
             }
             catch (Exception ex)
             {
-                return new HttpResponseBase { mensagem = "Erro ao remover servidor", msgException = ex.Message, sucesso = false, tpMensagem = HttpResponseBase.TipoMensagem.Erro };
+                return new HttpResponseBase { mensagem = "Erro ao remover servidor", msgException = ex.Message, sucesso = false, tpMensagem = TipoMensagem.Erro };
             }
         }
 
@@ -87,11 +88,11 @@ namespace Seventh.Desafio.Business.Services
                 if (servidor != null)
                     mensagemRetorno = servidor.IsDisponivel ? "Disponível" : "Indisponível";
 
-                return new HttpResponseBase { mensagem = mensagemRetorno, sucesso = true, tpMensagem = HttpResponseBase.TipoMensagem.Sucesso };
+                return new HttpResponseBase { mensagem = mensagemRetorno, sucesso = true, tpMensagem = TipoMensagem.Sucesso };
             }
             catch (Exception ex)
             {
-                return new HttpResponseBase { mensagem = "Erro ao verificar servidor", msgException = ex.Message, sucesso = false, tpMensagem = HttpResponseBase.TipoMensagem.Erro };
+                return new HttpResponseBase { mensagem = "Erro ao verificar servidor", msgException = ex.Message, sucesso = false, tpMensagem = TipoMensagem.Erro };
             }
         }
     }

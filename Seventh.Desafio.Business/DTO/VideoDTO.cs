@@ -10,7 +10,7 @@ namespace Seventh.Desafio.Business.DTO
         //public Guid ServidorId { get; set; }
         public string Descricao { get; set; }
         public IFormFile FileUpload { get; set; }
-        public string VideoUpload { get; set; }
+        //public string VideoUpload { get; set; }
         public bool IsRunning { get; set; }
 
         [JsonIgnore]

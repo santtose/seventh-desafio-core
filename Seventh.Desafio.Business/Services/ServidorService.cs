@@ -62,6 +62,7 @@ namespace Seventh.Desafio.Business.Services
                 if (servidor != null)
                 {
                     servidor.IsAtivo = !servidor.IsAtivo;
+                    servidor.IsDisponivel = !servidor.IsDisponivel;
 
                     mensagemRetorno = servidor.IsAtivo ? "Servidor recuperado com sucesso" : "Servidor removido com sucesso";
 

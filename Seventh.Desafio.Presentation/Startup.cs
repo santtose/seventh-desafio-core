@@ -31,7 +31,7 @@ namespace Seventh.Desafio.Presentation
             services.ResolveDependencies();
         }
 
-        
+
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseSwaggerConfiguration();

@@ -42,11 +42,6 @@ namespace Seventh.Desafio.Data.Repository.Base
                 .ToList();
         }
 
-        public T GetById(int id)
-        {
-            return _context.Set<T>().Find(id);
-        }
-
         public void Remove(T entity)
         {
             _context.Set<T>().Remove(entity);

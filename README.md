@@ -1,7 +1,7 @@
 # Seventh Desafio
 
-## Para rodar o projeto e atualizar base local do SQL Server Object Explorer
-- Update-Database apontando para o projeto Seventh.Desafio.Data.
+## Para atualizar base local do SQL Server Object Explorer
+- Update-Database na janela Package Manager Console, apontando para o projeto Seventh.Desafio.Data.
 
 ### Obs.:
 
